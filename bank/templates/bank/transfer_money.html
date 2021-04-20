@@ -1,0 +1,10 @@
+<html>
+	<body>
+	<h1>Transfer Amount</h1>
+	<form class="site-form" action="/transfer_money/" method="post">
+		{% csrf_token %}
+		{{form}}
+		<input type="submit" value="Transfer">
+	</form>
+	</body>
+</html>

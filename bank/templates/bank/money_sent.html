@@ -1,0 +1,7 @@
+{% extends 'bank/base.html' %}
+{% block content %}
+{% for a in h %}
+  <p>  {{a.transferred_to}}
+    {{a.amount2}}</p>
+{% endfor %}
+{% endblock %}
