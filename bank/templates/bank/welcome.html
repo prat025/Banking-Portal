@@ -1,17 +1,31 @@
 {% extends 'bank/base.html' %}
 {% block content %}
-    <h1>Welcome {{user}}. Your bank balance is ${{money}} </h1>
+    <h1>Welcome, {{user}}! Your bank balance is ${{money}} </h1>
+    <div class="add_balance">
     <form action="/add_balance/">
         <input type="submit" value="Add money" />
     </form>
+    </div>
+    <div class="transfer_money">
     <form action="/transfer_money/">
         <input type="submit" value="Transfer money" />
     </form>
+    </div>
+    <div class="money_received">
     <form action="/money_received">
         <input type="submit" value="Money Received" />
     </form>
+    </div>
+    <div class="money_sent">
     <form action="/money_sent">
         <input type="submit" value="Money Sent" />
     </form>
+    </div>
+    <div class="log_out">
+    <div class="log_out">
+    <form action="/log_out">
+        <input type="submit" value="Log Out" />
+    </form>
+    </div>
 {% endblock %}
 

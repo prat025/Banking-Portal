@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Account, Transaction_Details
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
 from .forms import AddBalance, TransferMoney
 
@@ -10,7 +10,7 @@ def signup_view(request):
         form=UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('http://127.0.0.1:8000/login/')
+            return redirect('http://127.0.0.1:8000/')
     else:
         form=UserCreationForm()
     return render(request, 'bank/signup.html', {'form':form}) 
@@ -30,12 +30,15 @@ def login_view(request):
     else:
         form=AuthenticationForm()
     return render(request, 'bank/login.html', {'form':form})
+def log_out(request):
+    if request.method=='GET':
+        logout(request)
+        return redirect('http://127.0.0.1:8000/')
 def welcome(request):
         global money
         p=Account.objects.filter(holder=user)
         money=p[0].amount
         return render(request, 'bank/welcome.html',{'money':money}, {'user':p})
-    
 def Add_Balance(request):
     if request.method=='GET':
         form=AddBalance()
@@ -74,6 +77,10 @@ def Money_Sent(request):
     if request.method=='GET':
         h=Transaction_Details.objects.filter(transferred_by=user)
         return render(request, 'bank/money_sent.html', {'h':h})
+def Money_Received(request):
+    if request.method=='GET':
+        h1=Transaction_Details.objects.filter(transferred_to=user)
+        return render(request, 'bank/money_received.html', {'h1':h1})
 
 
             

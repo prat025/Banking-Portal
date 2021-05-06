@@ -1,6 +1,8 @@
+{% extends 'bank/base.html' %}
+{% block content %}
 <html>
 	<body>
-	<h1>Transfer Amount</h1>
+	<h2>Transfer Amount</h2>
 	<form class="site-form" action="/transfer_money/" method="post">
 		{% csrf_token %}
 		{{form}}
@@ -8,3 +10,4 @@
 	</form>
 	</body>
 </html>
+{% endblock %}
